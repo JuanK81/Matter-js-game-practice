@@ -10,10 +10,12 @@ const {
     
 } = Matter;
 
-const cellsHorizontal = 14;
-const cellsVertical = 10;
-const width = window.innerWidth;
-const height = window.innerHeight;
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
+const cellsHorizontal = Math.floor(windowWidth / 100);
+const cellsVertical = Math.floor(windowHeight / 100);
+const width = window.innerWidth -10;
+const height = window.innerHeight -10;
 
 const unitLengthX = width / cellsHorizontal;
 const unitLengthY = height / cellsVertical;
@@ -268,6 +270,7 @@ Events.on(engine, 'collisionStart', event => {
       labels.includes(collision.bodyA.label) &&
       labels.includes(collision.bodyB.label)
     ) {
+      document.querySelector('#winner').innerHTML = '<h1>You WIn!</h1>'
       world.gravity.y = 1;
       world.bodies.forEach((body) => {
         if (body.label === 'wall') {
